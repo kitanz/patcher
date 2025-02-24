@@ -1,0 +1,64 @@
+{
+  "name": "everlast-launcher",
+  "description": "Everlast Game Launcher",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build && electron-builder",
+    "preview": "vite preview",
+    "electron": "cross-env NODE_ENV=development electron .",
+    "start": "npm run electron",
+    "clean": "rimraf dist dist-electron .vite",
+    "clean:all": "rimraf dist dist-electron .vite node_modules && npm install"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "axios": "^1.7.9",
+    "electron-store": "^10.0.1",
+    "electron-updater": "^6.3.9",
+    "node-stream-zip": "^1.15.0",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6",
+    "vite-plugin-electron": "^0.28.6",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue-tsc": "^2.0.26"
+  },
+  "main": "dist-electron/main.js",
+  "build": {
+    "appId": "com.everlast.launcher",
+    "productName": "Everlast Launcher",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "asar": true,
+    "directories": {
+      "output": "release/${version}"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ]
+  }
+}
